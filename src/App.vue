@@ -58,7 +58,7 @@ export default {
     }
   },
   created() {
-    EventBus.$on('todo-add', _ => {
+    EventBus.$on('todo-add', () => {
       this.showAlert()
     })
   }
