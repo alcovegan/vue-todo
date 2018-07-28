@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import store from './store'
 
 import bForm from 'bootstrap-vue/es/components/form/form'
 import bAlert from 'bootstrap-vue/es/components/alert/alert'
@@ -20,5 +21,6 @@ Vue.component('b-form-input', bFormInput)
 
 new Vue({
   el: '#app',
+  store,
   render: h => h(App)
 })
