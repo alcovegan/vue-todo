@@ -9,7 +9,17 @@ const store = new Vuex.Store({
     todos: []
   },
   mutations: {
-
+    check(state, { todo, status }) {
+      const todoIndex = state.todos.indexOf(todo)
+      state.todos[todoIndex].done = status
+    },
+    addTodo(state, todo) {
+      state.todos.push(todo)
+    },
+    editTodo(state, todo) {
+      const todoIndex = state.todos.indexOf(todo.editingTodo)
+      state.todos[todoIndex].title = todo.newTitle
+    }
   },
   actions: {
 

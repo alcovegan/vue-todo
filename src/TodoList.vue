@@ -45,37 +45,23 @@ export default {
       editingTodo: null,
       todo: {
         title: ''
-      },
-      todos: [
-        {
-          title: 'Todo 1',
-          done: false
-        },
-        {
-          title: 'Todo 2',
-          done: false
-        }
-
-      ]
+      }
     }
   },
   computed: {
     pendingTasks() {
-      return this.todos.filter(task => task.done === false)
+      return this.$store.state.todos.filter(task => task.done === false)
     },
     doneTasks() {
-      return this.todos.filter(task => task.done === true)
+      return this.$store.state.todos.filter(task => task.done === true)
     }
   },
   methods: {
     check(todo, status) {
-      const todoIndex = this.todos.indexOf(todo)
-
-      this.todos[todoIndex].done = status
+      this.$store.commit('check', { todo, status })
     },
     doneEdit() {
-      const todoIndex = this.todos.indexOf(this.editingTodo)
-      this.todos[todoIndex].title = this.todo.title
+      this.$store.commit('editTodo', { editingTodo: this.editingTodo, newTitle: this.todo.title })
       this.isTodoEditing = false
       this.editingTodo = null
       this.todo.title = ''

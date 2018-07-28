@@ -34,7 +34,10 @@ export default {
     addTodo(e) {
       e.preventDefault()
       const { title } = this.todo
-      EventBus.$emit('todo-add', { title, done: false })
+      const todo = { title, done: false }
+
+      this.$store.commit('addTodo', todo)
+      // EventBus.$emit('todo-add', { title, done: false })
       this.resetForm()
     },
     resetTodo() {
