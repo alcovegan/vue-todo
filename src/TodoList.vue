@@ -71,14 +71,6 @@ export default {
       this.isTodoEditing = true
       this.todo.title = todo.title
     }
-  },
-  created() {
-    EventBus.$on('todo-add', todo => {
-      this.todos.push(todo)
-    })
-  },
-  beforeDestroy() {
-    EventBus.$off('new-todo')
   }
 }
 </script>
