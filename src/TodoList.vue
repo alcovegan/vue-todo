@@ -4,8 +4,11 @@
     <ul class="list-group tasks tasks--pending">
       <li v-for="(todo, index) in pendingTasks" class="list-group-item">
         <span>{{ todo.title }}</span>
-        <a href="#" @click="editTodo(todo)">edit todo</a> |
-        <a href="#" @click="check(todo, true)">done</a>
+        <div>
+          <a href="#" @click="editTodo(todo)">edit todo</a> |
+          <a href="#" @click="check(todo, true)">done</a> |
+          <a href="#" @click="remove(todo)">delete</a>
+        </div>
       </li>
     </ul>
 
@@ -36,6 +39,7 @@
 
 <script>
 import { EventBus } from './event-bus.js'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'TodoList',
@@ -49,16 +53,17 @@ export default {
     }
   },
   computed: {
-    pendingTasks() {
-      return this.$store.state.todos.filter(task => task.done === false)
-    },
-    doneTasks() {
-      return this.$store.state.todos.filter(task => task.done === true)
-    }
+    ...mapGetters([
+      'pendingTasks',
+      'doneTasks'
+    ])
   },
   methods: {
     check(todo, status) {
       this.$store.commit('check', { todo, status })
+    },
+    remove(todo) {
+      this.$store.commit('removeTodo', todo)
     },
     doneEdit() {
       this.$store.commit('editTodo', { editingTodo: this.editingTodo, newTitle: this.todo.title })
