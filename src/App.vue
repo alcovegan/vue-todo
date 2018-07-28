@@ -58,8 +58,6 @@ export default {
     }
   },
   created() {
-    console.log('$store', this.$store.state);
-
     EventBus.$on('todo-add', () => {
       this.showAlert()
     })
