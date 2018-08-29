@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+I made it just because i have never done basic todo apps before. Now i'm in business too.
+
+It's basic todo app with localstorage synchronization (throug vuex plugin vuex-persistedstate).
+
 ## Build Setup
 
 ``` bash
